@@ -5,7 +5,7 @@ import 'package:bankapp/pages/bottomnavbar.dart';
 import 'package:bankapp/tiles/transactiontile.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class HomePage extends StatelessWidget {
       child: Column(
  crossAxisAlignment: CrossAxisAlignment.start,
    children: [
-  Spacer(),
+  
  Text('4562   1122   4595   7852',
   style: GoogleFonts.poppins(
  color: ColorConstants.textcolor,
