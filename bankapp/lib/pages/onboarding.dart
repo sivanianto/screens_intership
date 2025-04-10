@@ -1,7 +1,7 @@
 import 'package:bankapp/colors/colors.dart';
-    import 'package:bankapp/pages/signin.dart';
+import 'package:bankapp/pages/signin.dart';
 import 'package:flutter/material.dart';
-        import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class OnboardingScreen   extends StatefulWidget {
 const OnboardingScreen({super.key});
@@ -145,5 +145,4 @@ fontWeight: FontWeight.bold,
 SizedBox(height:40),
 ],
 ),
-);
-}
+);}}
