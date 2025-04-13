@@ -35,6 +35,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   google_fonts: ^6.2.1
+  awesome_card: ^1.1.7
+  fl_chart: ^0.62.0
 
 dev_dependencies:
   flutter_test:
@@ -64,18 +66,7 @@ flutter:
     - lib/assets/images/gr_one.png
     - lib/assets/images/gr_two.png
     - lib/assets/images/gr_three.png
-    - lib/assets/icons/profile.png
-    - lib/assets/icons/search.png
-    - lib/assets/icons/card_bg.png
-    - lib/assets/icons/grocery.png
-    - lib/assets/icons/loan.png
-    - lib/assets/icons/profile.png
-    - lib/assets/icons/receive.png
-    - lib/assets/icons/search.png
-    - lib/assets/icons/send.png
-    - lib/assets/icons/spotify.png
-    - lib/assets/icons/topup.png
-    - lib/assets/icons/transfer.png
+    - lib/assets/images/profile.png
     
   #   - images/a_dot_ham.jpeg
 
