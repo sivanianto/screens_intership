@@ -10,6 +10,4 @@ class ColorConstants {
   static Color cardcolor = Color(0xff25253D);
   static Color bottomnavbar = Color(0xff27273A);
   static Color divider = Color(0xff232533);
-  static Color icon = Color(0xff1E1E2D);
-
 }

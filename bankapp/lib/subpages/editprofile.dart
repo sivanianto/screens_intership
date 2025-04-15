@@ -2,283 +2,166 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:bankapp/colors/colors.dart';
 
-class EditProfile extends StatefulWidget {
-  const EditProfile({Key? key}) : super(key: key);
+class MyProfile extends StatelessWidget {
+ const MyProfile({super.key});
+ @override
+ Widget build(BuildContext context) {
+ return Scaffold(
+backgroundColor: ColorConstants.background,
+  appBar: AppBar(
+   backgroundColor: ColorConstants.background,
+    elevation: 0,
+       leading: IconButton(
+ icon: Icon(Icons.arrow_back, color: ColorConstants.textcolor),
+  onPressed: () => Navigator.pop(context),
+        ),
+       centerTitle: true,
+    title: Text(
+'Profile',
+ style: GoogleFonts.poppins(
+     fontSize: 20,
+   fontWeight: FontWeight.bold,
+color: ColorConstants.textcolor,
+          ),
+        ),
+  actions: const [
+         Padding(
+            padding: EdgeInsets.only(right: 16.0),
+      child: CircleAvatar(
+        radius: 18,
+           backgroundColor: Colors.grey,
+  child: Icon(Icons.person_outline, color: Colors.white),
+          ),
+        ),
+    ],
+      ),
+     body: Padding(
+ padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Stack(
+    children: [
+     Positioned(
+ top: 128,
+        left: 20,
+     child: Opacity(
+        opacity: 0.12,
+              child: Container(
+     width: 70,
+         height: 70,
+        decoration: BoxDecoration(
+     borderRadius: BorderRadius.circular(45),
+          ),
+        ),
+     ),
+      ),
+   Column(
+   crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+     const SizedBox(height: 20),
+        Row(
+    children: [
+  const CircleAvatar(
+  radius: 24,
+     backgroundImage: AssetImage(
+     'lib/assets/images/profile.png',
+    ),
+ backgroundColor: Colors.transparent,
+   ),
+ const SizedBox(width: 12),
+       Column(
+ crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+  'Welcome back,',
+     style: GoogleFonts.poppins(
+      color: ColorConstants.silenttextcolor,
+fontSize: 14,
+    ),
+  ),
+ Text(
+   'Tanya Myroniuk',
+     style: GoogleFonts.poppins(
+     color: ColorConstants.textcolor,
+     fontSize: 18,
+   fontWeight: FontWeight.w600,
+    ),
+   ),
+ ],
+       ),
+      ],
+    ),
+ const SizedBox(height: 30),
+     Expanded(
+      child: Padding(
+       padding: EdgeInsets.zero,
+       child: ListView(
+     children: [
+     buildSettingTile(
+ Icons.person_outline,
+     'Personal Information',
+   ),
+ buildSettingTile(
+ Icons.account_balance_wallet_outlined,
+     'Payment Preferences',
+   ),
+      buildSettingTile(Icons.credit_card, 'Banks and Cards'),
+ buildSettingTile(
+ Icons.notifications_outlined,
+     'Notifications',
+ trailing: Container(
+ padding: const EdgeInsets.all(6),
+ decoration: const BoxDecoration(
+ color: Colors.red,
+shape: BoxShape.circle,
+ ),
+ child: Text(
+   '2',
+style: TextStyle(
+color: ColorConstants.textcolor,
+     fontSize: 12,
+),
+),
+ ),
+ ),
+  buildSettingTile(
+Icons.message_outlined,
+     'Message Center',
+ ),
+ buildSettingTile(Icons.location_on_outlined, 'Address'),
+   buildSettingTile(Icons.settings_outlined, 'Settings'),
+ ],
+     ),
+ ),
+ ),
+ ],
+    ),
+   ],
+        ),
+      ),
+    );
+  }
 
-  @override
-  _EditProfileState createState() => _EditProfileState();
-}
-
-class _EditProfileState extends State<EditProfile> {
-  final _nameController = TextEditingController(text: "Tanya Myroniuk");
-  final _emailController = TextEditingController(
-    text: "tanya.myroniuk@gmail.com",
+Widget buildSettingTile(IconData icon, String title, {Widget? trailing}) {
+  return Column(
+    children: [
+       ListTile(
+      leading: Icon(icon, color: ColorConstants.silenttextcolor),
+     title: Text(
+ title,
+     style: GoogleFonts.poppins(
+    color: ColorConstants.textcolor,
+   fontSize: 14,
+        ),
+      ),
+ trailing: trailing ??
+     const Icon(
+ Icons.arrow_forward_ios,
+         size: 16,
+      color: Colors.white54,
+      ),
+      onTap: () {},
+    ),
+ Divider(color: ColorConstants.divider),
+    ],
   );
-  final _phoneController = TextEditingController(text: "+8801712663389");
-
-  String savedName = "";
-  String savedEmail = "";
-  String savedPhone = "";
-
-  void _saveChanges() {
-    setState(() {
-      savedName = _nameController.text;
-      savedEmail = _emailController.text;
-      savedPhone = _phoneController.text;
-    });
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          'Profile updated successfully!',
-          style: GoogleFonts.poppins(
-            color: Colors.white,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        backgroundColor: ColorConstants.button,
-        duration: Duration(seconds: 2),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorConstants.background,
-      appBar: AppBar(
-        backgroundColor: ColorConstants.background,
-        elevation: 0,
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text(
-          "Edit Profile",
-          style: GoogleFonts.poppins(
-            color: ColorConstants.textcolor,
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 30),
-            Center(
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    radius: 45,
-                    backgroundImage: AssetImage(
-                      'lib/assets/images/profile.png',
-                    ),
-                  ),
-                  SizedBox(height: 12),
-                  Text(
-                    _nameController.text,
-                    style: GoogleFonts.poppins(
-                      color: ColorConstants.textcolor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(height: 4),
-                  Text(
-                    "Senior Designer",
-                    style: GoogleFonts.poppins(
-                      color: ColorConstants.silenttextcolor,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 30),
-            Text(
-              "Full Name",
-              style: GoogleFonts.poppins(
-                color: ColorConstants.silenttextcolor,
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            SizedBox(height: 14),
-            Row(
-              children: [
-                Icon(Icons.person_outlined, color: Colors.grey, size: 18),
-                SizedBox(width: 10),
-                Expanded(
-                  child: TextFormField(
-                    controller: _nameController,
-                    style: GoogleFonts.poppins(
-                      color: ColorConstants.textcolor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    decoration: InputDecoration(
-                      isDense: true,
-                      border: InputBorder.none,
-                      hintText: 'Enter your name',
-                      hintStyle: GoogleFonts.poppins(color: Colors.grey),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 8),
-            Divider(color: ColorConstants.divider),
-            SizedBox(height: 16),
-            Text(
-              "Email Address",
-              style: GoogleFonts.poppins(
-                color: ColorConstants.silenttextcolor,
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            SizedBox(height: 14),
-            Row(
-              children: [
-                Icon(Icons.mail_outline, color: Colors.grey, size: 18),
-                SizedBox(width: 10),
-                Expanded(
-                  child: TextFormField(
-                    controller: _emailController,
-                    style: GoogleFonts.poppins(
-                      color: ColorConstants.textcolor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    decoration: InputDecoration(
-                      isDense: true,
-                      border: InputBorder.none,
-                      hintText: 'Enter your email',
-                      hintStyle: GoogleFonts.poppins(color: Colors.grey),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 8),
-            Divider(color: ColorConstants.divider),
-            SizedBox(height: 10),
-            Text(
-              "Phone Number",
-              style: GoogleFonts.poppins(
-                color: ColorConstants.silenttextcolor,
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            SizedBox(height: 14),
-            Row(
-              children: [
-                Icon(Icons.phone, color: Colors.grey, size: 18),
-                SizedBox(width: 10),
-                Expanded(
-                  child: TextFormField(
-                    controller: _phoneController,
-                    style: GoogleFonts.poppins(
-                      color: ColorConstants.textcolor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    decoration: InputDecoration(
-                      isDense: true,
-                      border: InputBorder.none,
-                      hintText: 'Enter your phone number',
-                      hintStyle: GoogleFonts.poppins(color: Colors.grey),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 8),
-            Divider(color: ColorConstants.divider),
-            SizedBox(height: 10),
-            Text(
-              "Birth Date",
-              style: GoogleFonts.poppins(
-                color: ColorConstants.silenttextcolor,
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            SizedBox(height: 14),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "28",
-                  style: GoogleFonts.poppins(
-                    color: ColorConstants.textcolor,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                Text(
-                  "September",
-                  style: GoogleFonts.poppins(
-                    color: ColorConstants.textcolor,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                Text(
-                  "2000",
-                  style: GoogleFonts.poppins(
-                    color: ColorConstants.textcolor,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 8),
-            Divider(color: ColorConstants.divider),
-            SizedBox(height: 30),
-            Center(
-              child: Text(
-                "Joined 28 Jan 2021",
-                style: GoogleFonts.poppins(
-                  color: ColorConstants.silenttextcolor,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ),
-            SizedBox(height: 20),
-            Center(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: ColorConstants.button,
-                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 14),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                onPressed: _saveChanges,
-                child: Text(
-                  "Save Changes",
-                  style: GoogleFonts.poppins(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: ColorConstants.textcolor,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+ }
 }
