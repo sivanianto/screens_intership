@@ -16,75 +16,103 @@ class _MyCardPageState extends State<MyCardPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorConstants.background,
-      appBar: AppBar(
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Scaffold(
         backgroundColor: ColorConstants.background,
-        surfaceTintColor: ColorConstants.background,
-        automaticallyImplyLeading: false,
+        body: SafeArea(
+          child: Column(
+            children: [
+              Container(
+                color: ColorConstants.background,
+                padding: const EdgeInsets.only(
+                  top: 10,
+                  left: 16,
+                  right: 16,
+                  bottom: 10,
+                ),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "My Cards",
+                        style: GoogleFonts.poppins(
+                          color: ColorConstants.textcolor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
 
-        elevation: 0,
-        title: Text(
-          "My Cards",
-          style: GoogleFonts.poppins(
-            color: ColorConstants.textcolor,
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Icon(Icons.add, color: Colors.white),
+                    ),
+                  ],
+                ),
+              ),
+
+              SizedBox(height: 32),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: CardTile(
+                  cardHolder: 'AR Jonson',
+                  cardNumber: '4562   1122   4595   7852',
+                  expiryDate: '24/2000',
+                  cvv: '6986',
+                ),
+              ),
+
+              SizedBox(height: 30),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  children: [
+                    TransactionTile(
+                      title: "Apple Store",
+                      subtitle: "Entertainment",
+                      amount: "- \$5.99",
+                      icon: Icons.apple,
+                      amountColor: ColorConstants.textcolor,
+                    ),
+                    SizedBox(height: 20),
+                    TransactionTile(
+                      title: "Spotify",
+                      subtitle: "Music",
+                      amount: "- \$12.99",
+                      icon: Icons.music_note,
+                      amountColor: ColorConstants.textcolor,
+                    ),
+                    SizedBox(height: 20),
+                    TransactionTile(
+                      title: "Grocery",
+                      subtitle: "Shopping",
+                      amount: "- \$88",
+                      icon: Icons.shopping_cart,
+                      amountColor: ColorConstants.textcolor,
+                    ),
+                  ],
+                ),
+              ),
+
+              SizedBox(height: 30),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: _buildSpendingLimitSlider(),
+              ),
+
+              Spacer(),
+            ],
           ),
         ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 16.0),
-            child: Icon(Icons.add, color: Colors.white),
-          ),
-        ],
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CardTile(),
-            SizedBox(height: 16),
-            _buildTransactionList(),
-            SizedBox(height: 16),
-            _buildSpendingLimitSlider(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTransactionList() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TransactionTile(
-          title: "Apple Store",
-          subtitle: "Entertainment",
-          amount: "- \$5.99",
-          icon: Icons.apple,
-          amountColor: Colors.redAccent,
-        ),
-        SizedBox(height: 20),
-        TransactionTile(
-          title: "Spotify",
-          subtitle: "Music",
-          amount: "- \$12.99",
-          icon: Icons.music_note,
-          amountColor: Colors.redAccent,
-        ),
-        SizedBox(height: 20),
-
-        TransactionTile(
-          title: "Grocery",
-          subtitle: "Shopping",
-          amount: "- \$88",
-          icon: Icons.shopping_cart,
-          amountColor: Colors.redAccent,
-        ),
-        SizedBox(height: 20),
-      ],
     );
   }
 

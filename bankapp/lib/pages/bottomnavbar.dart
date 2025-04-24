@@ -29,52 +29,58 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorConstants.background,
       body: _pages[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 8,
-        backgroundColor: ColorConstants.bottomnavbar,
-        selectedItemColor: ColorConstants.button,
-        unselectedItemColor: ColorConstants.silenttextcolor,
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _currentIndex,
-        selectedFontSize: 12,
-        unselectedFontSize: 12,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: Container(
-              margin: EdgeInsets.only(top: 12),
-              child: Icon(Icons.home),
+      bottomNavigationBar: Theme(
+        data: ThemeData(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+        ),
+        child: BottomNavigationBar(
+          elevation: 8,
+          backgroundColor: ColorConstants.bottomnavbar,
+          selectedItemColor: ColorConstants.button,
+          unselectedItemColor: ColorConstants.silenttextcolor,
+          type: BottomNavigationBarType.fixed,
+          currentIndex: _currentIndex,
+          selectedFontSize: 12,
+          unselectedFontSize: 12,
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          enableFeedback: false, 
+          items: [
+            BottomNavigationBarItem(
+              icon: Container(
+                margin: EdgeInsets.only(top: 12),
+                child: Icon(Icons.home),
+              ),
+              label: 'Home',
             ),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Container(
-              margin: EdgeInsets.only(top: 12),
-              child: Icon(Icons.wallet),
+            BottomNavigationBarItem(
+              icon: Container(
+                margin: EdgeInsets.only(top: 12),
+                child: Icon(Icons.wallet),
+              ),
+              label: 'My Card',
             ),
-            label: 'My Card',
-          ),
-          BottomNavigationBarItem(
-            icon: Container(
-              margin: EdgeInsets.only(top: 12),
-              child: Icon(Icons.bar_chart),
+            BottomNavigationBarItem(
+              icon: Container(
+                margin: EdgeInsets.only(top: 12),
+                child: Icon(Icons.bar_chart),
+              ),
+              label: 'Statistics',
             ),
-            label: 'Statistics',
-          ),
-          BottomNavigationBarItem(
-            icon: Container(
-              margin: EdgeInsets.only(top: 12),
-              child: Icon(Icons.settings),
+            BottomNavigationBarItem(
+              icon: Container(
+                margin: EdgeInsets.only(top: 12),
+                child: Icon(Icons.settings),
+              ),
+              label: 'Settings',
             ),
-            label: 'Settings',
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

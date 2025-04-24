@@ -3,7 +3,18 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:bankapp/colors/colors.dart';
 
 class CardTile extends StatelessWidget {
-  const CardTile({super.key});
+  final String cardHolder;
+  final String cardNumber;
+  final String expiryDate;
+  final String cvv;
+
+  const CardTile({
+    super.key,
+    required this.cardHolder,
+    required this.cardNumber,
+    required this.expiryDate,
+    required this.cvv,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,37 +24,38 @@ class CardTile extends StatelessWidget {
         color: ColorConstants.cardcolor.withOpacity(0.55),
         borderRadius: BorderRadius.circular(24),
       ),
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            children: [
+            children: const [
               Icon(Icons.credit_card_rounded, color: Colors.white),
               Spacer(),
               Icon(Icons.wifi, color: Colors.white),
             ],
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(
-            '4562  1122  4595  7852',
-            style: TextStyle(
+            cardNumber,
+            style: GoogleFonts.inter(
               color: ColorConstants.textcolor,
-              fontSize: 22,
-              letterSpacing: 1.8,
+              fontSize: 24,
+
+              letterSpacing: 0.8,
               fontWeight: FontWeight.w500,
             ),
           ),
-          SizedBox(height: 14),
+          const SizedBox(height: 14),
           Text(
-            'AR Jonson',
-            style: GoogleFonts.poppins(
+            cardHolder,
+            style: GoogleFonts.inter(
               color: ColorConstants.textcolor,
               fontSize: 13,
               fontWeight: FontWeight.w500,
             ),
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -54,34 +66,34 @@ class CardTile extends StatelessWidget {
                     children: [
                       Text(
                         'Expiry Date',
-                        style: TextStyle(
+                        style: GoogleFonts.inter(
                           color: ColorConstants.silenttextcolor,
-                          fontSize: 11,
+                          fontSize: 9,
                         ),
                       ),
                       Text(
-                        '24/2000',
-                        style: TextStyle(
+                        expiryDate,
+                        style: GoogleFonts.inter(
                           color: ColorConstants.textcolor,
                           fontSize: 13,
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(width: 30),
+                  const SizedBox(width: 30),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'CVV',
-                        style: TextStyle(
+                        style: GoogleFonts.inter(
                           color: ColorConstants.silenttextcolor,
-                          fontSize: 11,
+                          fontSize: 9,
                         ),
                       ),
                       Text(
-                        '6986',
-                        style: TextStyle(
+                        cvv,
+                        style: GoogleFonts.inter(
                           color: ColorConstants.textcolor,
                           fontSize: 13,
                         ),
@@ -103,7 +115,7 @@ class CardTile extends StatelessWidget {
                           child: Container(
                             width: 20,
                             height: 20,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Colors.red,
                               shape: BoxShape.circle,
                             ),
@@ -114,7 +126,7 @@ class CardTile extends StatelessWidget {
                           child: Container(
                             width: 20,
                             height: 20,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Colors.orange,
                               shape: BoxShape.circle,
                             ),
@@ -123,10 +135,10 @@ class CardTile extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   Text(
                     'Mastercard',
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.inter(
                       color: ColorConstants.textcolor,
                       fontSize: 13,
                       fontWeight: FontWeight.w500,

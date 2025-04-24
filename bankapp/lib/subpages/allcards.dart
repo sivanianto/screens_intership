@@ -1,7 +1,10 @@
+import 'package:bankapp/subpages/addcards.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:bankapp/colors/colors.dart';
 import 'package:bankapp/tiles/card_tile.dart';
+
+import '../common_widgets/custom_widgets.dart';
 
 class AllCards extends StatelessWidget {
   const AllCards({super.key});
@@ -13,30 +16,40 @@ class AllCards extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
+            Container(
+              color: ColorConstants.background,
+              padding: const EdgeInsets.only(
+                top: 10,
+                left: 16,
+                right: 16,
+                bottom: 10,
+              ),
+              child: Stack(
+                alignment: Alignment.center,
                 children: [
-                  IconButton(
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: ColorConstants.textcolor,
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.3),
+                        shape: BoxShape.circle,
+                      ),
+                      child: CustomBackButton(),
                     ),
-                    onPressed: () => Navigator.pop(context),
                   ),
-                  Expanded(
-                    child: Center(
-                      child: Text(
-                        'All Cards',
-                        style: GoogleFonts.poppins(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: ColorConstants.textcolor,
-                        ),
+
+                  Center(
+                    child: Text(
+                      'All Cards',
+                      style: GoogleFonts.poppins(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: ColorConstants.textcolor,
                       ),
                     ),
                   ),
-                  const SizedBox(width: 48),
                 ],
               ),
             ),
@@ -51,7 +64,12 @@ class AllCards extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return const Padding(
                       padding: EdgeInsets.only(bottom: 20),
-                      child: CardTile(),
+                      child: CardTile(
+                        cardHolder: 'AR Jonson',
+                        cardNumber: '4562   1122   4595   7852',
+                        expiryDate: '24/2000',
+                        cvv: '6986',
+                      ),
                     );
                   },
                 ),
@@ -67,7 +85,10 @@ class AllCards extends StatelessWidget {
                 height: 56,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Navigator.push(context, MaterialPageRoute(builder: (_) => AddCards()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => AddCardPage()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: ColorConstants.button,

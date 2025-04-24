@@ -2,7 +2,7 @@ name: bankapp
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -54,7 +54,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -66,8 +65,14 @@ flutter:
     - lib/assets/images/gr_one.png
     - lib/assets/images/gr_two.png
     - lib/assets/images/gr_three.png
+    - lib/assets/images/english.png
+    - lib/assets/images/australia.png
+    - lib/assets/images/french.png
+    - lib/assets/images/spanish.png
+    - lib/assets/images/sweden.png
+    - lib/assets/images/vietnamese.png
     - lib/assets/images/profile.png
-    
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

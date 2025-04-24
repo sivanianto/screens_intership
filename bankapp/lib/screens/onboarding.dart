@@ -38,13 +38,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   void _nextPage() {
     if (_currentPage < _onboardingData.length - 1) {
       _controller.nextPage(
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
     } else {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Signin()),
+        MaterialPageRoute(builder: (context) => const Signin()),
       );
     }
   }
@@ -53,101 +53,114 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorConstants.background,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(height: 100),
-          Expanded(
-            child: PageView.builder(
-              controller: _controller,
-              itemCount: _onboardingData.length,
-              onPageChanged: (index) {
-                setState(() {
-                  _currentPage = index;
-                });
-              },
-              itemBuilder:
-                  (context, index) => Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 250,
-                          width: double.infinity,
-                          child: Image.asset(
-                            _onboardingData[index]['image']!,
-                            fit: BoxFit.contain,
-                            alignment: Alignment.center,
-                          ),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 60),
+
+            Expanded(
+              child: PageView.builder(
+                controller: _controller,
+                itemCount: _onboardingData.length,
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentPage = index;
+                  });
+                },
+                itemBuilder: (context, index) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 250,
+                        child: Image.asset(
+                          _onboardingData[index]['image']!,
+                          fit: BoxFit.contain,
+                          alignment: Alignment.center,
                         ),
-                        SizedBox(height: 80),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: List.generate(
-                            _onboardingData.length,
-                            (dotIndex) => AnimatedContainer(
-                              duration: Duration(milliseconds: 300),
-                              margin: EdgeInsets.symmetric(horizontal: 3),
-                              width: _currentPage == dotIndex ? 19 : 6,
-                              height: 6,
-                              decoration: BoxDecoration(
-                                color:
-                                    _currentPage == dotIndex
-                                        ? ColorConstants.button
-                                        : ColorConstants.dotmain,
-                                borderRadius: BorderRadius.circular(5),
-                              ),
+                      ),
+
+                      const SizedBox(height: 30),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(
+                          _onboardingData.length,
+                          (dotIndex) => AnimatedContainer(
+                            duration: const Duration(milliseconds: 300),
+                            margin: const EdgeInsets.symmetric(horizontal: 4),
+                            width: _currentPage == dotIndex ? 19 : 6,
+                            height: 6,
+                            decoration: BoxDecoration(
+                              color:
+                                  _currentPage == dotIndex
+                                      ? ColorConstants.button
+                                      : ColorConstants.dotmain,
+                              borderRadius: BorderRadius.circular(5),
                             ),
                           ),
                         ),
-                        SizedBox(height: 40),
-                        Text(
-                          _onboardingData[index]['title']!,
+                      ),
+
+                      const SizedBox(height: 30),
+
+                      Text(
+                        _onboardingData[index]['title']!,
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.poppins(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+
+                      const SizedBox(height: 10),
+
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                        child: Text(
+                          _onboardingData[index]['description']!,
                           textAlign: TextAlign.center,
-                          style: GoogleFonts.poppins(
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey,
                           ),
                         ),
-                        SizedBox(height: 10),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 40),
-                          child: Text(
-                            _onboardingData[index]['description']!,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 16, color: Colors.grey),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-            ),
-          ),
-          SizedBox(height: 40),
-          GestureDetector(
-            onTap: _nextPage,
-            child: Container(
-              width: 335,
-              height: 56,
-              decoration: BoxDecoration(
-                color: ColorConstants.button,
-                borderRadius: BorderRadius.circular(16),
+                      ),
+                    ],
+                  );
+                },
               ),
-              child: Center(
-                child: Text(
-                  "Next",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+            ),
+
+            const SizedBox(height: 40),
+
+            GestureDetector(
+              onTap: _nextPage,
+              child: Container(
+                width: 335,
+                height: 56,
+                decoration: BoxDecoration(
+                  color: ColorConstants.button,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: const Center(
+                  child: Text(
+                    "Next",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          SizedBox(height: 40),
-        ],
+
+            const SizedBox(height: 40),
+          ],
+        ),
       ),
     );
   }
